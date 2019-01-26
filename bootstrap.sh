@@ -69,7 +69,7 @@ apt install -y ntp
 
 ## install python
 apt install -y tor
-apt install -y arm
+# apt install -y tor-arm
 
 # configure sshd
 # ORIG_USER=$(logname)
