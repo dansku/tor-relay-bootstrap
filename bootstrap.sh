@@ -10,11 +10,11 @@ PWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # update software
 echo "== Updating software"
-apt-get update
-apt-get dist-upgrade -y
+apt update
+apt dist-upgrade -y
 
 # install extra apps
-apt-get install -y lsb-release apt-transport-https mosh vnstat bmon htop
+apt install -y lsb-release apt-transport-https mosh vnstat bmon htop
 
 # add official Tor repository
 # if ! grep -q "https://deb.torproject.org/torproject.org" /etc/apt/sources.list; then
@@ -46,7 +46,7 @@ chmod 600 /etc/iptables/rules.v6
 iptables-restore < /etc/iptables/rules.v4
 ip6tables-restore < /etc/iptables/rules.v6
 
-apt-get install -y fail2ban
+apt install -y fail2ban
 
 # configure automatic updates
 # echo "== Configuring unattended upgrades"
@@ -55,17 +55,20 @@ apt-get install -y fail2ban
 # service unattended-upgrades restart
 
 # install apparmor
-apt-get install -y apparmor apparmor-profiles apparmor-utils
+apt install -y apparmor apparmor-profiles apparmor-utils
 sed -i.bak 's/GRUB_CMDLINE_LINUX="\(.*\)"/GRUB_CMDLINE_LINUX="\1 apparmor=1 security=apparmor"/' /etc/default/grub
 update-grub
 
 # install ntp (tlsdate is no longer available in Debian stable)
-apt-get install -y ntp
+apt install -y ntp
 
 # install monit
-apt-get install -y monit
+apt install -y monit
 cp $PWD/etc/monit/conf.d/tor-relay.conf /etc/monit/conf.d/tor-relay.conf
 service monit restart
+
+apt install tor
+
 
 # configure sshd
 # ORIG_USER=$(logname)
