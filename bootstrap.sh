@@ -55,20 +55,21 @@ apt install -y fail2ban
 # service unattended-upgrades restart
 
 # install apparmor
-apt install -y apparmor apparmor-profiles apparmor-utils
-sed -i.bak 's/GRUB_CMDLINE_LINUX="\(.*\)"/GRUB_CMDLINE_LINUX="\1 apparmor=1 security=apparmor"/' /etc/default/grub
-update-grub
+# apt install -y apparmor apparmor-profiles apparmor-utils
+# sed -i.bak 's/GRUB_CMDLINE_LINUX="\(.*\)"/GRUB_CMDLINE_LINUX="\1 apparmor=1 security=apparmor"/' /etc/default/grub
+# update-grub
 
 # install ntp (tlsdate is no longer available in Debian stable)
 apt install -y ntp
 
 # install monit
-apt install -y monit
-cp $PWD/etc/monit/conf.d/tor-relay.conf /etc/monit/conf.d/tor-relay.conf
-service monit restart
+# apt install -y monit
+# cp $PWD/etc/monit/conf.d/tor-relay.conf /etc/monit/conf.d/tor-relay.conf
+# service monit restart
 
-apt install tor
-
+## install python
+apt install -y tor
+apt install -y arm
 
 # configure sshd
 # ORIG_USER=$(logname)
