@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# check for root
+# check for sudo
 if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root" 1>&2
+    echo "This script must be run as sudo" 1>&2
     exit 1
 fi
 
@@ -29,7 +29,7 @@ chmod 600 /etc/iptables/rules.v6
 iptables-restore < /etc/iptables/rules.v4
 ip6tables-restore < /etc/iptables/rules.v6
 
-# Install fail2ban
+# install fail2ban
 apt install -y fail2ban
 
 # install ntp (tlsdate is no longer available in Debian stable)
@@ -46,7 +46,10 @@ killall tor
 # copy config file 
 cp $PWD/etc/tor/torrc /etc/tor/torrc
 
-# start tor and be happy
-tor
+# give user permission to file
+chown -R $USER:$USER ~/.tor
 
-echo "Done :)"
+# # start tor and be happy
+# tor
+
+echo "Done, now just type `tor` to start application and user `nyx to monitore it. Enjoy :)`"
