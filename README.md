@@ -13,10 +13,10 @@ tor-relay-bootstrap does this:
 To use it, set up a Debian server, SSH into it, switch to the root user, and:
 
 Create new tor user:
-`adduser tor`
-`usermod -aG sudo tor`
+* `adduser tor`
+* `usermod -aG sudo tor`
 
 Login as the user and type
-`sudo apt install unzip && wget https://github.com/dansku/tor-relay-bootstrap/archive/master.zip && unzip master.zip && cd tor-relay-bootstrap-master && sudo ./bootstrap.sh` to begin installation
+* `sudo apt install unzip && wget https://github.com/dansku/tor-relay-startup-script/archive/master.zip && unzip master.zip && cd tor-relay-startup-script-master && sudo ./bootstrap.sh` to begin installation
 
 Once everything is ready, run `tor` and monitor it with `nyx`.
