@@ -9,7 +9,6 @@ fi
 PWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # update software
-echo "== Updating software"
 apt update
 apt dist-upgrade -y
 
@@ -46,10 +45,9 @@ killall tor
 # copy config file 
 cp $PWD/etc/tor/torrc /etc/tor/torrc
 
-# give user permission to file
-chown -R $USER:$USER ~/.tor
+# give user permission to files and folders
+chown -R $USER:$USER /home/tor/.tor
+chown -R $USER:$USER /var/lib/tor/
+chown -R $USER:$USER /var/log/tor/
 
-# # start tor and be happy
-# tor
-
-echo "Done, now just type `tor` to start application and user `nyx to monitore it. Enjoy :)`"
+echo "Done, now just type tor to start application and use nyx to monitore it. Enjoy :)"
